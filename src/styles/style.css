@@ -1,0 +1,345 @@
+/
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+html{
+    color: black;
+}
+
+body{font-family: sans-serif;overflow-x:hidden;}p{font-size:20px;}p.small{font-size:16px;}a,a:hover,a:focus,a:active,a.active{outline:0;color:#3B5998;}h1,h2,h3,h4,h5,h6{font-family:sans-serif;font-weight:700;}hr.star-light,hr.star-primary{margin:25px auto 30px;padding:0;max-width:250px;border:0;border-top:solid 5px;text-align:center;}hr.star-light:after,hr.star-primary:after{content:"\f005";display:inline-block;position:relative;top:-.8em;padding:0 .25em;font-family:FontAwesome;font-size:2em;}hr.star-light{border-color:#fff;}hr.star-light:after{color:#fff;background-color:#18bc9c;}hr.star-primary{border-color:#2c3e50;}hr.star-primary:after{color:#2c3e50;background-color:#fff;}.img-centered{margin:0 auto;}header{text-align:center;color:#000;background:#fff;}header .container{padding-top:60px;padding-bottom:20px;}header img{display:block;margin:0 auto;}header .intro-text .name{display:block;text-transform:uppercase;font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:2em;font-weight:700;}header .intro-text .skills{font-size:1.25em;font-weight:300;}@media(min-width:768px) {
+    header .container {
+       /* margin-top: 30px;*/
+    }
+
+    header .intro-text .name {
+        font-size: 4.75em;
+    }
+
+    header .intro-text .skills {
+        font-size: 1.75em;
+    }
+}
+
+input[type=text]{
+    text-align: center;
+    font: inherit;
+    border: 6px solid #a3d8d6;
+    padding: 13px 12px;
+    font-size: 15px;
+    box-shadow: 0 1px 1px #DDD;
+    width: 384px;
+    outline: none;
+    display: block;
+    color: #7B8585;
+    margin: 0 auto 20px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+header .container {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+/*misc*/
+.active {
+    font-weight: bold;
+}
+
+/*custom buttons*/
+
+.btn-tweet {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tweet-button {
+    display: inline;
+    width: 300px;
+    background-color: #00aced;
+    color: white;
+    padding: 15px 39px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.tweet-button:hover {
+    background-color: #21c2ff;
+    color:white;
+}
+
+.facebook-button {
+    display: inline;
+    width: 300px;
+    background-color: #3b5998;
+    color: white;
+    padding: 15px 39px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.facebook-button:hover {
+    background-color: #4c70ba;
+    color:white;
+}
+
+.table-btn {
+    margin-right: 5px;
+}
+
+.page-button {
+    float: right;
+    margin: 15px;
+    margin: 38px 5px 15px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.btn-refesh {
+    font-size: 31px!important;
+}
+
+.btn-highlight {
+    background: #7dc374;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-highlight:hover {
+    background: #91DB87;
+}
+
+.button-general {
+    background: #4B4D4F;
+    width: 300px;
+    font-weight: 700;
+    color: #fff;
+    font-size: 15px;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 11px 39px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    margin-top: 5px;
+}
+
+.button-general:hover {
+    background: #2D74AE;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-header-active {
+    background-color: #4c70ba!important;
+    color: white;
+}
+
+button.btn.btn-header-toggle {
+    border: solid 1px #4c70ba;
+    font-weight: bold;
+    background: white;
+}
+
+button.btn.btn-header-toggle:hover {
+    color: white;
+    background: #4c70ba;
+}
+
+
+
+
+/*Left Nav*/
+
+@media(max-width:1200px) {
+    .left-nav {
+        position: relative!important;
+    }
+}
+
+.active {
+    background: #f0f0f0;
+}
+
+#main {
+    margin-top: 25px;
+}
+
+.logo-area {
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.left-nav {
+    position: fixed;
+}
+
+.left-nav-menu {
+    list-style: none;
+    text-align: left;
+    font-size: 17px;
+}
+
+.left-nav-menu li {
+    padding: 20px 19px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.left-nav-menu li:hover {
+    background: #f0f0f0;
+}
+
+.left-nav-menu li a {
+    color: black;
+}
+
+.left-nav-menu li a:hover{
+    text-decoration: none;
+}
+
+.section-name {
+    font-size: 43px;
+    color: black;
+    text-align: left;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.section-sub-head {
+    font-size: 22px;
+    text-align: center;
+    color: #666;
+}
+
+.stats-line {
+    text-align: left;
+    border-bottom: solid 1px #f0f0f0;
+    padding-bottom: 5px;
+    margin-bottom: 32px;
+    font-size: 21px;
+}
+
+.stats-line-value {
+    margin-right: 45px;
+    color: rgb(44, 44, 50);
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.action-status {
+  font-size: 16px;
+  color: #BEBEBE;
+  text-align: center;
+}
+
+/*Content area*/
+.content-area {
+    padding-left: 50px;
+}
+
+
+/*Table*/
+.table-styled {
+    background: white;
+    width: 100%;
+    border: solid 1px #D3D3D3;
+    margin: 30px auto;
+}
+
+.table-styled a{
+  text-decoration: none;
+  color: black;
+}
+
+.table-styled thead {
+  background: #fafafa;
+  font-size: 14px !important;
+}
+
+.table-styled tr {
+  background: rgb(252, 252, 252);
+  font-size: 16px;
+}
+
+.table-styled tr:hover {
+  background: #F7F7F7;
+  cursor: pointer;
+}
+
+.table-styled tbody {
+  font-size: 13px !important;
+}
+
+.table-styled td {
+  border-top: 1px solid #ddd;
+  padding: 5px 15px;
+  text-align: center;
+}
+
+.table-styled td img {
+    max-height: 100px;
+}
+
+thead tr th {
+    text-align: center;
+    padding: 15px;
+    color: rgb(102, 102, 102);
+    background: white;
+    font-size: 18px;
+}
+
+/*Post Container*/
+.post-container {
+    width: 600px;
+    border-bottom: solid 1px #f0f0f0;
+    padding-bottom: 25px;
+}
+
+.post-container h3 {
+    text-align: left;
+    text-transform: capitalize;
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+
+.post-container .metadata {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: #828282;
+}
+
+.post-container .metadata a{
+    text-decoration: underline;
+    color: #828282;
+}
+
+.post-container .meta-social {
+    height: 35px;
+}
+
+.post-container .social-button-container {
+    margin-top: 15px;
+    float:right;
+}
+
+.post-container img {
+    width: 600px;
+    margin-bottom: 20px;
+}
