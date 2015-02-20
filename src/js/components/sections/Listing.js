@@ -7,7 +7,7 @@ var _ = require('lodash');
 var ListingStore = require('../../stores/listing-store');
 var ListingActions = require('../../actions/listing-actions');
 
-var Post = require('./post/post');
+var ListingItem = require('./Listing/ListingItem');
 
 function getListing() {
     return {
@@ -80,13 +80,9 @@ var Listing = React.createClass({
         var posts = this.preprocessPosts(this.state.posts);
 
         var listing = posts.map(function(post, index){
-            // if (index > 19) {
-            //     return;
-            // }
-
             return (
                 <div className="post-container">
-                    <Post post={post}/>
+                    <ListingItem post={post}/>
                 </div>
             )
         });
