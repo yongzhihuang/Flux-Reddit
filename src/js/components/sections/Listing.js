@@ -9,10 +9,13 @@ var ListingActions = require('../../actions/listing-actions');
 
 var ListingItem = require('./Listing/ListingItem');
 
+
+
 function getListing() {
     return {
         posts: ListingStore.getListing(),
-        section: ''
+        section: '',
+        loaded: false
     }
 }
 
@@ -54,7 +57,16 @@ var Listing = React.createClass({
         _.each(posts, function(post, key) {
           if (post.data.url.indexOf('imgur.com') !== -1) {
             var imgurHash = /imgur.com\/(.*)/ig.exec(post.data.url)[1];
-            post.data.url = 'http://i.imgur.com/' + imgurHash + '.png';
+
+            if ((post.data.url.indexOf('.jpg') === -1) && (post.data.url.indexOf('.png') === -1) && (post.data.url.indexOf('.gifv') === -1)) {
+                post.data.url = 'http://i.imgur.com/' + imgurHash + 'l' + '.png';
+            } else if ((post.data.url.indexOf('.gif') === -1) && (post.data.url.indexOf('.gifv') === -1)){
+                //imgurHash = imgurHash.split('.')[0] + 'l.png';
+                //TODO: Make original OK image smaller preset too
+                post.data.url = 'http://i.imgur.com/' + imgurHash;
+            }
+
+            //console.log(post.data.url);
           } else if (post.data.url.indexOf('youtube') !== -1) {
             var videoId = post.data.url.match(/v=([^&]*)/);
             if (videoId && videoId[1]) {
@@ -74,12 +86,20 @@ var Listing = React.createClass({
     },
 
     render: function () {
-        var sectionFromUrlParameter = this.getParams().section;
-        var currentSection = (sectionFromUrlParameter === 'all') ? 'Popular' : sectionFromUrlParameter;
+        var self = this;
+        
+        if (!this.state.posts.length) {
+            return (
+                <div className="loading-spinner"><i className="fa fa-spinner fa-spin"></i></div>
+            )
+        }
 
         var posts = this.preprocessPosts(this.state.posts);
-
         var listing = posts.map(function(post, index){
+
+            if (index === posts.length) {
+                this
+            }
             return (
                 <div className="post-container">
                     <ListingItem post={post}/>

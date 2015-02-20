@@ -6,6 +6,7 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = "change";
 
 var _listing = [];
+var _infiniteScrollMark = 0;
 
 //Get list of reddit posts from server and return it to listing processing function
 function _setListing(posts) {
@@ -25,7 +26,7 @@ var ListingStore = _.extend(EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getListing: function() {
+  getListing: function(start, end) {
     return _listing;
   },
 

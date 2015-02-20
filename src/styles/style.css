@@ -55,6 +55,18 @@ header .container {
     font-weight: bold;
 }
 
+.nsfw {
+    opacity: .04;
+}
+
+.nsfw:hover {
+    opacity: 1;
+}
+
+.loading-spinner {
+    font-size: 50px;
+}
+
 /*custom buttons*/
 
 .btn-tweet {
