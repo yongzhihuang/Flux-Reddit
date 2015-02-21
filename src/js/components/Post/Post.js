@@ -20,46 +20,74 @@ function getPostData() {
 var Post = React.createClass({
     mixins: [Router.State],
 
-    // getInitialState: function() {
-    //     return getPostData();
-    // },
+    getInitialState: function() {
+        return getPostData();
+    },
 
-    // componentWillMount: function() {
-    //     var urlPath = this.getParams().splat;
-    //     var hash = urlPath.split('/')[3];
+    componentWillMount: function() {
+        var urlPath = this.getParams().splat;
+        var hash = urlPath.split('/')[3];
 
-    //     PostActions.getPostData(hash, urlPath);
-    // },
+        PostActions.getPostData(hash, urlPath);
+    },
 
-    // componentDidMount: function() {
-    //     PostStore.addChangeListener(this._onChange);
-    // },
+    componentDidMount: function() {
+        PostStore.addChangeListener(this._onChange);
+    },
 
-    // componentWillUnmount: function () {
-    //     PostStore.removeChangeListener(this._onChange);
-    // },
+    componentWillUnmount: function () {
+        PostStore.removeChangeListener(this._onChange);
+    },
 
-    // _onChange: function() {
-    //     if (!this.isMounted()) {
-    //         return;
-    //     }
-    //     this.setState(getPostData());
-    // },
-
+    _onChange: function() {
+        if (!this.isMounted()) {
+            return;
+        }
+        this.setState(getPostData());
+    },
     
-    // componentWillReceiveProps: function() {
-    //     var urlPath = this.getParams().splat;
-    //     var hash = urlPath.split('/')[3];
+    componentWillReceiveProps: function() {
+        var urlPath = this.getParams().splat;
+        var hash = urlPath.split('/')[3];
 
-    //     PostActions.getPostData(hash, urlPath);
-    //     this.setState(getListing());
-    // },
+        PostActions.getPostData(hash, urlPath);
+        this.setState(getListing());
+    },
 
     render: function () {
-        console.log(this.getParams());
+        var post = this.state.post;
+
+        //Show Loading spinner while posts are not loaded
+        if (post.length === 0) {
+            return (
+                <div className="loading-spinner"><i className="fa fa-spinner fa-spin"></i></div>
+            )
+        }
+
+        //transoform url to our own
+        var url = '/post' + post.permalink;
+        var postMarkUp;
+
+        switch (post.content.type) {
+            case 'image':
+                postMarkUp = <img className={post.imageClass} src={post.content.content} alt={post.title}/>
+                break;
+            case 'youtube':
+                postMarkUp = <img className={post.imageClass} src={post.content.content} alt={post.title}/>
+                break;
+            case 'self':
+                postMarkUp = <p>{post.content.content} <Link to={url} params={{postData: post}}>Read More</Link></p>
+            case 'other':
+                postMarkUp = <p><Link to={url} params={{postData: post}}>{post.content.content}</Link></p>
+        }
+
+        console.log(post);
+
+
         return (
-            <div>
-               Post
+            <div className="post-container">
+               <h3>{post.title}</h3>
+                {postMarkUp}
                <Comments/>
             </div>
         );

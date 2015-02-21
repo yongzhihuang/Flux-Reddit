@@ -3,30 +3,43 @@ var AppConstants = require('../constants/app-constants');
 
 var PostActions = {
   getPostData: function (hash, urlPath) {
+    //Retrieves post from server data based on hash
 	_fetchPostData(hash, urlPath);
   },
+
   updatePostData: function(postData) {
-  	console.log('about to send to dispatcher', postData);
   	AppDispatcher.handleViewAction({
         actionType: AppConstants.UPDATE_POST_DATA,
         postData: postData
     });
+  },
+
+  insertPostToDb: function(postData) {
+    AppDispatcher.handleViewAction({
+        actionType: AppConstants.INSERT_POST_DATA,
+        postData: postData
+    });
   }
+
 };
 
 function _fetchPostData(hash, urlPath) {
 
+    //Looks at our server to see if post with this hash exists
 	$.ajax({
         type: "GET",
-        url: "http://www.shareonfb.com/server/v2/getPosts.php",
+        url: "http://www.shareonfb.com/server/v2/getPostsV2.php",
         data: {
             hash: hash
         },
         success: function(response) {
             if (response === "Post Do Not Exist") {
+                //Post doesn't exist, call our api to store the post and return it
                 _fetchFromReddit(urlPath);
                 return;
             }
+
+            //Data exists, send updatePostdata to dispatcher
             PostActions.updatePostData(response);
         },
 
@@ -34,7 +47,7 @@ function _fetchPostData(hash, urlPath) {
             //Store error event goes here
             //console.log('error: ' + error);
         }
-    }); //ajax   
+    }); 
 }
 
 function _fetchFromReddit(urlPath) {
@@ -44,6 +57,7 @@ function _fetchFromReddit(urlPath) {
         url: "http://www.reddit.com/" + urlPath + ".json?jsonp=?",
         dataType:"jsonp",
         success: function(response) {
+            //console.log('Post not found, fetching from reddit, heres data', response);
             serializeRedditResponse(response);
         },
 
@@ -68,33 +82,9 @@ function serializeRedditResponse(response) {
 	    image: postData.url
 	});
 
+    //console.log('serializing data from reddit, calling updatePostData with post:', post);
 	PostActions.updatePostData(post);
-
-	//insertToDb(post);
-}
-
-function insertToDb(postData) {
-	$.ajax({
-        type: "POST",
-        url: "http://www.shareonfb.com/server/v2/insertPost.php",
-        data: {
-        	hash: postData.hash,
-            title: postData.title,
-            over18: postData.over_18,
-            author: postData.author,
-            section: postData.section,
-            content: postData.content,
-            permalink: postData.permalink,
-            image: postData.image
-        },
-        success: function(response) {
-            console.log(response);
-        },
-
-        fail: function(error) {
-            console.log('error: ' + error);
-       	}
-    }); //ajax
+	PostActions.insertPostToDb(post);
 }
 
 module.exports = PostActions;
