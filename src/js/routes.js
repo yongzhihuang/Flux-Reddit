@@ -8,13 +8,13 @@ var DefaultRoute = Router.DefaultRoute;
 //App specific routes
 // var AppRoot = require('./components/AppRoot');
 // var Overview = require('./components/sections/Overview');
-var NotFound = require('./components/sections/NotFound');
+var NotFound = require('./components/NotFound');
 
 module.exports = (
 	<Route name="app" path="/" handler={require('./components/AppRoot')}>
-	    <DefaultRoute handler={require('./components/sections/Listing')} />
-	    <Route name="Listing" path="/section/:section" handler={require('./components/sections/Listing')} />
-	    <Route name="Post" path="/post/*" handler={require('./components/sections/Post/Post')} />
+	    <DefaultRoute handler={require('./components/Listing/Listing')} />
+	    <Route name="listing" path="/section/:section" handler={require('./components/Listing/Listing')} />
+	    <Route name="post" path="/post/*" handler={require('./components/Post/Post')} />
 	    <NotFoundRoute handler={NotFound}/>
 	</Route>
 );

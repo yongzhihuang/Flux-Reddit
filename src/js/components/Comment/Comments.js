@@ -3,19 +3,21 @@ var React = require('react/addons');
 var Router = require('react-router');
 var Link = Router.Link;
 
-var Util = require('../../../libs/util');
+var Util = require('../../libs/util');
 
-var Comment = React.createClass({
+var Comment = require('./Comment');
+
+var Comments = React.createClass({
     mixins: [Router.State],
 
     render: function () {
         return (
-            <div className="comment-item">
-               This is a Comment
+            <div className="comments-container">
+               <Comment/>
             </div>
         );
     }
 
 });
 
-module.exports = Comment;
+module.exports = Comments;

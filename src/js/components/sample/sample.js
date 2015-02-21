@@ -2,7 +2,7 @@
 var React = require('react/addons'), 
     Checkout = require('./checkout');
 
-var AppActions = require('../../../actions/app-actions');
+var AppActions = require('../../actions/app-actions');
 
 var Sample = React.createClass({
 

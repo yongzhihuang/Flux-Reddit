@@ -4,8 +4,8 @@ var React = require('react/addons');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
 
-var RightNav = require('./sections/RightNav');
-var TopNav = require('./sections/TopNav');
+var RightNav = require('./RightNav');
+var TopNav = require('./TopNav');
 
 var AppRoot = React.createClass({
 

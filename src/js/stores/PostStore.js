@@ -1,7 +1,8 @@
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var AppConstants = require('../constants/app-constants');
-var _ = require('lodash');
 var EventEmitter = require('events').EventEmitter;
+
+var _ = require('lodash');
 
 var CHANGE_EVENT = "change";
 
@@ -9,7 +10,7 @@ var _post = [];
 
 //Get list of reddit posts from server and return it to listing processing function
 function _updatePost(postData) {
-  console.log('in store', postData.post[0]);
+  //console.log('in store', postData.post[0]);
   _post = postData.post[0];
 }
 
