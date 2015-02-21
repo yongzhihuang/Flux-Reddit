@@ -355,3 +355,38 @@ thead tr th {
     width: 600px;
     margin-bottom: 20px;
 }
+
+/*Comments Container*/
+.comments-container {
+    margin-top: 35px;
+    padding-top: 10px;
+    border-top: solid 1px #f0f0f0;
+    text-align: left;
+    font-size: 15px;
+}
+
+.comment-author {
+    display: inline;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.comment-points {
+    display: inline;
+    color: green;
+    font-size: 10px;
+    text-decoration: none;
+    margin-left: 3px;
+}
+
+.comment-body {
+    font-size: 15px;
+}
+
+.comment-node {
+    margin-bottom: 25px;
+}
+
+.comment-child {
+    padding-left: 25px;
+}

@@ -67,6 +67,21 @@ function _processPost(post) {
   //Detemine meta info
   post.imageClass = (post.over_18) ? 'lazy nsfw' : 'lazy';
 
+  post.metadata = {
+      author: post.author,
+      section: post.section,
+      timestamp: post.date,
+      points: post.score,
+      num_comments: post.num_comments,
+      permalink: post.permalink,
+      selftext: post.selftext,
+      hash: post.hash,
+  };
+
+  post.metaSocial = {
+      num_comments: post.num_comments,
+      permalink: post.permalink
+  }
 
   return post;
 }
@@ -74,7 +89,7 @@ function _processPost(post) {
 function _insertPostToDB(postData) {
   //console.log('insert post to DB');
   _post = _processPost(postData);
-  
+
   $.ajax({
         type: "POST",
         url: "http://www.shareonfb.com/server/v2/insertPostV2.php",
@@ -83,6 +98,9 @@ function _insertPostToDB(postData) {
             title: postData.title,
             over18: postData.over_18,
             author: postData.author,
+            score: postData.score,
+            comments: postData.comments,
+            selftext: postData.selftext,
             section: postData.section,
             content: postData.content,
             permalink: postData.permalink,

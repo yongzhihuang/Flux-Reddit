@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Metadata = React.createClass({
 
@@ -7,7 +9,8 @@ var Metadata = React.createClass({
     	var metadata = this.props.data;
         return (
             <div className="metadata">
-				{metadata.points} Points by {metadata.author} posted to <a href={metadata.section}>{metadata.section}</a> | <a href={metadata.permalink}>{metadata.num_comments} comments</a>
+				{metadata.points} Points by {metadata.author} posted to <Link to={'/section/' + metadata.section}>{metadata.section}</Link> | 
+				<Link to={metadata.permalink}>{metadata.num_comments} comments</Link>
             </div>
         );
     }

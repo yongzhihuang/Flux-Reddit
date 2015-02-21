@@ -8,6 +8,8 @@ var Util = require('../../libs/util');
 var PostStore = require('../../stores/PostStore');
 var PostActions = require('../../actions/PostActions')
 
+var Metadata = require('../Listing/Metadata');
+var MetaSocial = require('../Listing/MetaSocial');
 var Comments = require('../Comment/Comments');
 
 
@@ -47,6 +49,8 @@ var Post = React.createClass({
     },
     
     componentWillReceiveProps: function() {
+
+        this.setState({post:[]});
         var urlPath = this.getParams().splat;
         var hash = urlPath.split('/')[3];
 
@@ -81,14 +85,13 @@ var Post = React.createClass({
                 postMarkUp = <p><Link to={url} params={{postData: post}}>{post.content.content}</Link></p>
         }
 
-        console.log(post);
-
-
         return (
             <div className="post-container">
                <h3>{post.title}</h3>
+               <Metadata data={post.metadata}/>
                 {postMarkUp}
-               <Comments/>
+               <MetaSocial data={post.metaSocial}/>
+               <Comments url={post.permalink}/>
             </div>
         );
     }

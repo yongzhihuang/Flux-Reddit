@@ -77,6 +77,9 @@ function serializeRedditResponse(response) {
 	    over18: postData.over_18,
 	    author: postData.author,
 	    section: postData.subreddit,
+        score: postData.score,
+        comments: postData.num_comments,
+        selftext: postData.selftext,
 	    content: '',
 	    permalink: postData.permalink,
 	    image: postData.url
