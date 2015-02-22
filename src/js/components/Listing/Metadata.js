@@ -9,7 +9,8 @@ var Metadata = React.createClass({
     	var metadata = this.props.data;
         return (
             <div className="metadata">
-				{metadata.points} Points by {metadata.author} posted to <Link to={'/section/' + metadata.section}>{metadata.section}</Link> | 
+				{metadata.points} Points by {metadata.author} posted to {' '}
+				<Link to={'/section/' + metadata.section}>{metadata.section}</Link> | {' '} 
 				<Link to={metadata.permalink}>{metadata.num_comments} comments</Link>
             </div>
         );

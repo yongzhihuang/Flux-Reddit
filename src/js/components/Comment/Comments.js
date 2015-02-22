@@ -46,13 +46,14 @@ var Comments = React.createClass({
     },
 
     render: function () {
+
+        var comments = this.state.comments.map(function(comment, index) {
+            return <Comment comment={comment.data} />
+        });
+
         return (
             <div className="comments-container">
-               <Comment/>
-
-               <Comment/>
-
-               <Comment/>
+                {comments}
             </div>
         );
     }

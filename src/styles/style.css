@@ -356,6 +356,18 @@ thead tr th {
     margin-bottom: 20px;
 }
 
+.selftext {
+    font-size: 15px;
+    border: solid 1px #f0f0f0;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.source {
+    font-size: 15px;
+    text-decoration: underline;
+}
+
 /*Comments Container*/
 .comments-container {
     margin-top: 35px;

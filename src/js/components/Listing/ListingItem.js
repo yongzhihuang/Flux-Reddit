@@ -38,9 +38,14 @@ var ListingItem = React.createClass({
                     )
                 break;
             case 'self':
-                postMarkUp = <p>{post.content.content} <Link to={url} params={{postData: post}}>Read More</Link></p>
-            case 'other':
-                postMarkUp = <p><Link to={url} params={{postData: post}}>{post.content.content}</Link></p>
+                postMarkUp = <p className="selftext">{post.content.content} <Link to={url}>Read More</Link></p>
+                break;
+            default:
+                postMarkUp = (
+                        <div>
+                            <p className="source"><a href={post.content.content} target="_blank">Source</a></p>
+                        </div>
+                    )
         }
 
         return (

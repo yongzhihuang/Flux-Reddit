@@ -17,32 +17,22 @@ var CommentActions = {
 };
 
 function _fetchComments(url) {
-console.log('gonna fetch comment from', url);
+//console.log('gonna fetch comment from', url);
     //Looks at our server to see if post with this hash exists
-	// $.ajax({
- //        type: "GET",
- //        url: "http://www.shareonfb.com/server/v2/getPostsV2.php",
- //        data: {
- //            hash: hash
- //        },
- //        success: function(response) {
- //            if (response === "Post Do Not Exist") {
- //                //Post doesn't exist, call our api to store the post and return it
- //                _fetchFromReddit(urlPath);
- //                return;
- //            }
+    var commentUrl = 'http://www.reddit.com' + url + '.json?limit=100&sort=top&jsonp=?';
+    $.ajax({
+        type: "GET",
+        url: commentUrl,
+        dataType:"jsonp",
+        success: function(response) {
+            CommentActions.updateCommentsData(response[1].data.children);
+        },
 
- //            //Data exists, send updateCommentsData to dispatcher
- //            CommentActions.updateCommentsData(response);
- //        },
-
- //        fail: function(error) {
- //            //Store error event goes here
- //            //console.log('error: ' + error);
- //        }
- //    }); 
-
-  CommentActions.updateCommentsData(['comment1', 'comment 2'])
+        fail: function(error) {
+            //Store error event goes here
+            //console.log('error: ' + error);
+        }
+    }); 
 }
 
 function _fetchFromReddit(urlPath) {

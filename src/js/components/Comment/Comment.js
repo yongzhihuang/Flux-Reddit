@@ -8,14 +8,26 @@ var Util = require('../../libs/util');
 var CommentChild = require('./CommentChild');
 
 var Comment = React.createClass({
-    mixins: [Router.State],
 
     render: function () {
+
+        //console.log(this.props.comment);
+        var comment = this.props.comment;
+        var commentChildren = 'no child';
+
+        //var commentChild = (comment.replies.data.children) ? <CommentChild replies={comment.replies.data.children}/> : '';
+
+        if (comment.replies && comment.replies.data.children) {
+          commentChildren = comment.replies.data.children.map(function(commentChild, index) {
+            return <CommentChild comment={commentChild.data}/>
+          })
+        }
+
         return (
             <div className="comment-node">
-               <div className="comment-author">Deathbylight</div> <div className="comment-points">(3423)</div>:
-               <p className="comment-body">This is a great post I love this post, can you post some moar plox? Thanks kthx bye.</p>
-               <CommentChild/>
+               <div className="comment-author">{comment.author}</div> <div className="comment-points">(comment.score)</div>:
+               <p className="comment-body">{comment.body}</p>
+               {commentChildren}
             </div>
         );
     }

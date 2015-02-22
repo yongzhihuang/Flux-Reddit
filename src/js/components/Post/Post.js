@@ -48,15 +48,14 @@ var Post = React.createClass({
         this.setState(getPostData());
     },
     
-    componentWillReceiveProps: function() {
+    // componentWillReceiveProps: function() {
+    //     this.setState({post:[]});
+    //     var urlPath = this.getParams().splat;
+    //     var hash = urlPath.split('/')[3];
 
-        this.setState({post:[]});
-        var urlPath = this.getParams().splat;
-        var hash = urlPath.split('/')[3];
-
-        PostActions.getPostData(hash, urlPath);
-        this.setState(getListing());
-    },
+    //     PostActions.getPostData(hash, urlPath);
+    //     this.setState(getListing());
+    // },
 
     render: function () {
         var post = this.state.post;
@@ -80,11 +79,16 @@ var Post = React.createClass({
                 postMarkUp = <img className={post.imageClass} src={post.content.content} alt={post.title}/>
                 break;
             case 'self':
-                postMarkUp = <p>{post.content.content} <Link to={url} params={{postData: post}}>Read More</Link></p>
-            case 'other':
-                postMarkUp = <p><Link to={url} params={{postData: post}}>{post.content.content}</Link></p>
+                postMarkUp = <p className="selftext">{post.content.content} <Link to={url}>Read More</Link></p>
+                break;
+            default:
+                postMarkUp = (
+                        <div>
+                            <p className="source"><a href={post.content.content} target="_blank">Source</a></p>
+                        </div>
+                    )
         }
-
+        
         return (
             <div className="post-container">
                <h3>{post.title}</h3>
