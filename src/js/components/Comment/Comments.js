@@ -25,7 +25,7 @@ var Comments = React.createClass({
     },
 
     componentWillMount: function() {
-        console.log('will mount comments',this.props.url);
+        this.setState({comments: []});
         var url = this.props.url;
         CommentActions.getComments(url);
     },
@@ -37,6 +37,17 @@ var Comments = React.createClass({
     componentWillUnmount: function () {
         CommentStore.removeChangeListener(this._onChange);
     },
+    
+    // componentWillReceiveProps: function(newProp) {
+    //     console.log('comments receive new prop', newProp);
+
+    // },
+
+    shouldComponentUpdate: function(newUrl, nextState) {
+        console.log(newUrl.url, this.props.url, (newUrl.url !== this.props.url));
+        this.setState(getComments());
+      return newUrl.url === this.props.url;
+    },
 
     _onChange: function() {
         if (!this.isMounted()) {
@@ -46,6 +57,12 @@ var Comments = React.createClass({
     },
 
     render: function () {
+        //Show Loading spinner while posts are not loaded
+        if (!this.state.comments.length) {
+            return (
+                <div className="loading-spinner"><i className="fa fa-spinner fa-spin"></i></div>
+            )
+        }
 
         var comments = this.state.comments.map(function(comment, index) {
             return <Comment comment={comment.data} />

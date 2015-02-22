@@ -13,9 +13,12 @@ var CommentChild = React.createClass({
     	//console.log(this.props.comment);
         var comment = this.props.comment;
 
+        if (!this.props.comment.body) {
+        	return <div/>
+        }
         return (
             <div className="comment-child">
-               <div className="comment-author">{comment.author}</div> <div className="comment-points">(comment.score)</div>:
+               <div className="comment-author">{comment.author}</div> <div className="comment-points">({comment.score})</div>:
                <p className="comment-body">{comment.body}</p>
             </div>
         );

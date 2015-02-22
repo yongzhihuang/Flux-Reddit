@@ -25,7 +25,7 @@ var Comment = React.createClass({
 
         return (
             <div className="comment-node">
-               <div className="comment-author">{comment.author}</div> <div className="comment-points">(comment.score)</div>:
+               <div className="comment-author">{comment.author}</div> <div className="comment-points">({comment.score})</div>:
                <p className="comment-body">{comment.body}</p>
                {commentChildren}
             </div>

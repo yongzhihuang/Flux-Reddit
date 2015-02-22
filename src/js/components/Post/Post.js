@@ -50,10 +50,6 @@ var Post = React.createClass({
     
     // componentWillReceiveProps: function() {
     //     this.setState({post:[]});
-    //     var urlPath = this.getParams().splat;
-    //     var hash = urlPath.split('/')[3];
-
-    //     PostActions.getPostData(hash, urlPath);
     //     this.setState(getListing());
     // },
 
@@ -88,7 +84,7 @@ var Post = React.createClass({
                         </div>
                     )
         }
-        
+
         return (
             <div className="post-container">
                <h3>{post.title}</h3>
